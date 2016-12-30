@@ -11,6 +11,7 @@ import org.json.JSONException;
 
 import com.google.gson.Gson;
 
+import beans.AuthResponse;
 import beans.Person;
 import bridge.PersistenceUser;
 import bridge.imp.PersistenceUserImp;
@@ -22,8 +23,8 @@ public class UserEndPoint {
 
 	@Path("add")
 	@POST
-	@Consumes("application/json")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response add(String jsonString) throws JSONException {
 		Person person = null;
 		if (jsonString == null) {
@@ -35,7 +36,8 @@ public class UserEndPoint {
 			if (persistence == null) {
 				persistence = new PersistenceUserImp<Person>(Person.class);
 			}
-			return Response.status(200).entity(persistence.save(person)).build();
+			AuthResponse auth = new AuthResponse(persistence.save(person));
+			return Response.ok(auth.getJson()).build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.UNAUTHORIZED).build();
 		}
@@ -43,7 +45,8 @@ public class UserEndPoint {
 
 	@Path("update")
 	@POST
-	@Produces("application/json")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response update(String jsonString) throws JSONException {
 		Person person;
 		if (jsonString == null) {
@@ -55,7 +58,8 @@ public class UserEndPoint {
 			if (persistence == null) {
 				persistence = new PersistenceUserImp<Person>(Person.class);
 			}
-			return Response.status(200).entity(persistence.update(person)).build();
+			AuthResponse auth = new AuthResponse(persistence.update(person));
+			return Response.ok(auth.getJson()).build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.UNAUTHORIZED).build();
 		}
