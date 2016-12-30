@@ -11,22 +11,16 @@ public class Person extends Entity {
     private String email;
     private String password;
     private String phone;
-    private int age;
 	
-	public Person(String name, String email, String password, String phone, int age) {
+	public Person(String name, String email, String password, String phone) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.phone = phone;
-		this.age = age;
 	}
 	
 	public String getName() {
 		return name;
-	}
-
-	public int getAge() {
-		return age;
 	}
 
 	public String getEmail() {
