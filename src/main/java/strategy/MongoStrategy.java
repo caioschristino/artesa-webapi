@@ -46,7 +46,7 @@ public class MongoStrategy<T extends beans.Entity> implements RepositoryStrategy
 
 	@Override
 	public T save(T entity) {
-		BasicDBObject doc = (BasicDBObject) JSON.parse(new Gson().toJson(entity));
+		BasicDBObject doc = (BasicDBObject) JSON.parse(JsonUtils.serialize(entity));
 		getCollection().insert(doc);
 		entity.setId(doc.getObjectId("_id"));
 
@@ -91,7 +91,7 @@ public class MongoStrategy<T extends beans.Entity> implements RepositoryStrategy
 	@Override
 	public T update(T entity) {
 		BasicDBObject query = new BasicDBObject("_id", entity.getId());
-		BasicDBObject doc = (BasicDBObject) JSON.parse(new Gson().toJson(entity));
+		BasicDBObject doc = (BasicDBObject) JSON.parse(JsonUtils.serialize(entity));
 		getCollection().update(query, doc);
 		entity.setId(doc.getObjectId("_id"));
 
