@@ -36,4 +36,11 @@ public interface PersistenceUser {
 	 * @param password
 	 */
 	public Person isValidCredentials(String email, String password);
+	
+	/**
+	 * 
+	 * @param email
+	 * @param password
+	 */
+	public Person isValidCredentials(String idIn);
 }

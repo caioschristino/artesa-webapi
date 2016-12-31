@@ -1,23 +1,17 @@
 package beans;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@XmlRootElement
 @Document
 public class Person extends Entity {
-    private String name;
+	private String name;
     private String email;
     private String password;
     private String phone;
-	
-	public Person(String name, String email, String password, String phone) {
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.phone = phone;
-	}
+    private boolean acceptTerms;
+    private String gender;
+    private String idIn;
+    private String tokenIn;
 	
 	public String getName() {
 		return name;
@@ -33,6 +27,22 @@ public class Person extends Entity {
 
 	public String getPassword() {
 		return password;
+	}
+	
+	public boolean isAcceptTerms() {
+		return acceptTerms;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+	
+	public String getIdIn() {
+		return idIn;
+	}
+	
+	public String getTokenIn() {
+		return tokenIn;
 	}
 
 	@Override

@@ -55,4 +55,12 @@ public class PersistenceUserImp<T extends beans.Entity> implements PersistenceUs
 		// TODO Auto-generated method stub
 		return repo.list();
 	}
+
+	@Override
+	public Person isValidCredentials(String idIn) {
+		BasicDBObject query = new BasicDBObject();
+		query.put("idIn", idIn);
+		
+		return repo.get(query);
+	}
 }
