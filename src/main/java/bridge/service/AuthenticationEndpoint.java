@@ -34,6 +34,36 @@ public class AuthenticationEndpoint {
 			return Response.status(Response.Status.UNAUTHORIZED).build();
 		}
 	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes("application/x-www-form-urlencoded")
+	public Response authenticateUser(@FormParam("idIn") String idIn) {
+		try {
+			AuthResponse auth = authenticate(idIn);
+			// Authenticate the user using the credentials provided
+			if (null == auth) {
+				throw new Exception();
+			}
+
+			// Return the token on the response
+			return Response.ok(auth.getJson()).build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+	}
+	
+	private AuthResponse authenticate(String idIn) throws Exception {
+		if (persistence == null) {
+			persistence = new PersistenceUserImp<Person>(Person.class);
+		}
+
+		Person person = persistence.isValidCredentials(idIn);
+		if (person != null) {
+			return new AuthResponse(person);
+		}
+		return null;
+	}
 
 	private AuthResponse authenticate(String email, String password) throws Exception {
 		if (persistence == null) {
