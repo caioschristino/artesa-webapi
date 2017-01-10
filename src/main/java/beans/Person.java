@@ -11,7 +11,6 @@ public class Person extends Entity {
     private boolean acceptTerms;
     private String gender;
     private String idIn;
-    private String tokenIn;
     private String birthday;
 	
 	public String getName() {
@@ -40,10 +39,6 @@ public class Person extends Entity {
 	
 	public String getIdIn() {
 		return idIn;
-	}
-	
-	public String getTokenIn() {
-		return tokenIn;
 	}
 	
 	public String getBirthday() {

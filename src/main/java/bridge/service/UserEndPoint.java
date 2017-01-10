@@ -15,7 +15,6 @@ import beans.AuthResponse;
 import beans.Person;
 import bridge.PersistenceUser;
 import bridge.imp.PersistenceUserImp;
-import util.GsonUtils;
 
 @Path("user")
 public class UserEndPoint {
@@ -38,7 +37,7 @@ public class UserEndPoint {
 				persistence = new PersistenceUserImp<Person>(Person.class);
 			}
 			AuthResponse auth = new AuthResponse(persistence.save(person));
-			return Response.ok(GsonUtils.getJsonFromClass(person)).build();
+			return Response.ok(auth.getJson()).build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.UNAUTHORIZED).build();
 		}
