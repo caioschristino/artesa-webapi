@@ -12,6 +12,7 @@ public class Person extends Entity {
     private String gender;
     private String idIn;
     private String tokenIn;
+    private String birthday;
 	
 	public String getName() {
 		return name;
@@ -43,6 +44,10 @@ public class Person extends Entity {
 	
 	public String getTokenIn() {
 		return tokenIn;
+	}
+	
+	public String getBirthday() {
+		return birthday;
 	}
 
 	@Override
