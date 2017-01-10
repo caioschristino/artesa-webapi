@@ -1,5 +1,6 @@
 package bridge.service;
 
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -37,7 +38,6 @@ public class AuthenticationEndpoint {
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes("application/x-www-form-urlencoded")
 	public Response authenticateUser(@FormParam("idIn") String idIn) {
 		try {
 			AuthResponse auth = authenticate(idIn);
