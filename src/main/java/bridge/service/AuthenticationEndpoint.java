@@ -19,9 +19,10 @@ public class AuthenticationEndpoint {
 	private PersistenceUser persistence;
 
 	@POST
+	@Path("/params")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes("application/x-www-form-urlencoded")
-	public Response authenticateUser(@FormParam("email") String email, @FormParam("password") String password) {
+	public Response login(@FormParam("email") String email, @FormParam("password") String password) {
 		try {
 			AuthResponse auth = authenticate(email, password);
 			// Authenticate the user using the credentials provided
@@ -36,9 +37,12 @@ public class AuthenticationEndpoint {
 		}
 	}
 	
+
 	@POST
+	@Path("/token")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response authenticateUser(@FormParam("idIn") String idIn) {
+	@Consumes("application/x-www-form-urlencoded")
+	public Response login(@FormParam("idIn") String idIn) {
 		try {
 			AuthResponse auth = authenticate(idIn);
 			// Authenticate the user using the credentials provided
