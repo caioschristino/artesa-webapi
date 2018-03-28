@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import io.swagger.annotations.Api;
 import org.json.JSONException;
 
 import com.google.gson.Gson;
@@ -16,6 +17,7 @@ import beans.Person;
 import bridge.PersistenceUser;
 import bridge.imp.PersistenceUserImp;
 
+@Api
 @Path("user")
 public class UserEndPoint {
 	private Gson gson = new Gson();

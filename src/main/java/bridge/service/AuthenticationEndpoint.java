@@ -13,7 +13,9 @@ import beans.AuthResponse;
 import beans.Person;
 import bridge.PersistenceUser;
 import bridge.imp.PersistenceUserImp;
+import io.swagger.annotations.Api;
 
+@Api
 @Path("authentication")
 public class AuthenticationEndpoint {
 	private PersistenceUser persistence;
