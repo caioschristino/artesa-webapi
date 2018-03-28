@@ -46,6 +46,7 @@ public class AuthenticationEndpoint {
         } catch (Exception e) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
+
     }
 	
 
